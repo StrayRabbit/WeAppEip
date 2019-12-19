@@ -1,0 +1,15 @@
+E:\Work\WeAppEip\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csprojAssemblyReference.cache
+E:\Work\WeAppEip\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfoInputs.cache
+E:\Work\WeAppEip\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfo.cs
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\WeAppEip.Infrastructure.deps.json
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\WeAppEip.Infrastructure.dll
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\WeAppEip.Infrastructure.pdb
+E:\Work\WeAppEip\Infrastructure\obj\Debug\netstandard2.0\WeAppEip.Infrastructure.dll
+E:\Work\WeAppEip\Infrastructure\obj\Debug\netstandard2.0\WeAppEip.Infrastructure.pdb
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\Microsoft.EntityFrameworkCore.dll
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\WeAppEip.ApplicationCore.dll
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.dll
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\WeAppEip.ApplicationCore.pdb
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\Microsoft.EntityFrameworkCore.xml
+E:\Work\WeAppEip\Infrastructure\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.xml
+E:\Work\WeAppEip\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete

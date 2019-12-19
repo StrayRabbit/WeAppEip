@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Areas/System/Views/Shared/_LayoutPageDig.cshtml";
+}
+@model WeAppEip.Web.ViewModels.Banner.BannerViewModel
+
+<div class="container">
+    <div class="row">
+        <section>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="page-header">
+                    <h2>Banner详情</h2>
+                </div>
+                <form class="form-horizontal" id="form">
+                    @Html.HiddenFor(m => Model.Id)
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Banner图片</label>
+                        <div class="col-md-6">
+                            @Html.Hidden("ImageUrl", Model.ImageUrl)
+                            <input id="Upload" name="Upload" type="file" class="file-loading" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">排序</label>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(p => p.Order, new { @class = "form-control", placeholder = "请输入数字" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">描述</label>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(p => p.Description, new { @class = "form-control", placeholder = "请输入推荐理由", cols = "20", rows = "5" })
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-save" type="submit" id="submit"><i class="fa fa-check"></i> <span>确定保存</span></button>
+                        <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="fa fa-reply-all"></i> 取消返回</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+@section scripts
+{
+    <link href="~/css/fileinput.css" rel="stylesheet" />
+    <script src="~/js/fileinput.js"></script>
+    <script src="~/js/fileinput_locale_zh.js"></script>
+    <script>
+        $(function () {
+            ValidateForm();
+
+            //Banner图片
+            $("#Upload").uploadSinglePic("Banner", "ImageUrl", 1, "form");
+
+            //提交按钮
+            $("#submit").on("click", function () {
+                var data = $("#form").data("bootstrapValidator");
+                if (data) {
+                    // 修复记忆的组件不验证
+                    data.validate();
+                    if (!data.isValid()) {
+                        return false;
+                    }
+                    $.post("/System/Banner/Save", $("#form").serialize(), function (result) {
+                        console.log(result);
+                        debugger;
+                        SubAjax.Success(result);
+                    });
+                }
+                return false;
+            });
+        });
+
+        //数据验证
+        function ValidateForm() {
+            $("#form").bootstrapValidator({
+                excluded: [":disabled"],//关键配置，表示只对于禁用域不进行验证，其他的表单元素都要验证
+                message: "该项不能为空！",
+                feedbackIcons: {
+                    valid: "glyphicon glyphicon-ok",
+                    invalid: "glyphicon glyphicon-remove",
+                    validating: "glyphicon glyphicon-refresh"
+                },
+                fields: {
+                    "ImageUrl": {
+                        validators: {
+                            notEmpty: {
+                                message: "请您上传Banner图片!"
+                            }
+                        }
+                    },
+                    "Order": {
+                        validators: {
+                            numeric: {
+                                message: '只能输入数字'
+                            }
+                        }
+                    },
+                }
+            });
+            // 修复bootstrap validator重复向服务端提交bug
+            $("#form").on("success.form.bv", function (e) {
+                e.preventDefault();
+            });
+        }
+    </script>
+}

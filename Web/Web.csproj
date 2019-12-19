@@ -1,0 +1,125 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AssemblyName>Web</AssemblyName>
+    <RootNamespace>Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Upload\**" />
+    <Content Remove="Upload\**" />
+    <EmbeddedResource Remove="Upload\**" />
+    <None Remove="Upload\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\dialog.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\dialog_ie.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\dialog_ie7.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\dialog_ie8.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\dialog_iequirks.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\dialog_opera.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\editor.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\editor_gecko.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\editor_ie.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\editor_ie7.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\editor_ie8.css" />
+    <Content Include="wwwroot\ckeditor\skins\bootstrapck\.temp\css\editor_iequirks.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.17" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\System\Data\" />
+    <Folder Include="Areas\System\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ckeditor\adapters\jquery.js" />
+    <None Include="wwwroot\ckeditor\build-config.js" />
+    <None Include="wwwroot\ckeditor\ckeditor.js" />
+    <None Include="wwwroot\ckeditor\config.js" />
+    <None Include="wwwroot\ckeditor\lang\en.js" />
+    <None Include="wwwroot\ckeditor\lang\zh-cn.js" />
+    <None Include="wwwroot\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <None Include="wwwroot\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <None Include="wwwroot\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <None Include="wwwroot\ckeditor\plugins\about\dialogs\about.js" />
+    <None Include="wwwroot\ckeditor\plugins\colordialog\dialogs\colordialog.js" />
+    <None Include="wwwroot\ckeditor\plugins\copyformatting\cursors\cursor-disabled.svg" />
+    <None Include="wwwroot\ckeditor\plugins\copyformatting\cursors\cursor.svg" />
+    <None Include="wwwroot\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <None Include="wwwroot\ckeditor\plugins\div\dialogs\div.js" />
+    <None Include="wwwroot\ckeditor\plugins\find\dialogs\find.js" />
+    <None Include="wwwroot\ckeditor\plugins\flash\dialogs\flash.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\button.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\checkbox.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\form.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\hiddenfield.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\radio.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\select.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\textarea.js" />
+    <None Include="wwwroot\ckeditor\plugins\forms\dialogs\textfield.js" />
+    <None Include="wwwroot\ckeditor\plugins\iframe\dialogs\iframe.js" />
+    <None Include="wwwroot\ckeditor\plugins\image\dialogs\image.js" />
+    <None Include="wwwroot\ckeditor\plugins\link\dialogs\anchor.js" />
+    <None Include="wwwroot\ckeditor\plugins\link\dialogs\link.js" />
+    <None Include="wwwroot\ckeditor\plugins\liststyle\dialogs\liststyle.js" />
+    <None Include="wwwroot\ckeditor\plugins\pastefromword\filter\default.js" />
+    <None Include="wwwroot\ckeditor\plugins\scayt\dialogs\options.js" />
+    <None Include="wwwroot\ckeditor\plugins\smiley\dialogs\smiley.js" />
+    <None Include="wwwroot\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <None Include="wwwroot\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <None Include="wwwroot\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <None Include="wwwroot\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <None Include="wwwroot\ckeditor\plugins\table\dialogs\table.js" />
+    <None Include="wwwroot\ckeditor\plugins\templates\dialogs\templates.js" />
+    <None Include="wwwroot\ckeditor\plugins\templates\templates\default.js" />
+    <None Include="wwwroot\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <None Include="wwwroot\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\gecko\editor_gecko.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\ie7\dialog_ie7.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\ie7\editor_ie7.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\ie8\dialog_ie8.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\ie8\editor_ie8.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\iequirks\dialog_iequirks.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\iequirks\editor_iequirks.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\ie\dialog_ie.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\ie\editor_ie.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\browser-specific\opera\dialog_opera.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\editor.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_colorpanel.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_elementspath.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_mainui.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_menu.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_panel.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_presets.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_reset.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_richcombo.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\components\_toolbar.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\config\_colors.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\config\_config.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\config\_defaults.scss" />
+    <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\dialog\dialog.scss" />
+    <None Include="wwwroot\ckeditor\styles.js" />
+    <None Include="wwwroot\Upload\Banner\0b75141573cf4eb2ae4157fb7b01f7d2.jpg" />
+    <None Include="wwwroot\Upload\Banner\816de126dd7a482192139aa99c284249.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

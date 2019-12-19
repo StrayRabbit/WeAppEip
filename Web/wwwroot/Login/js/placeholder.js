@@ -1,0 +1,7 @@
+
+$(document).ready(function(){
+	
+	$(".form-username").val("«Î ‰»Î’À∫≈");
+	$(".form-password").val("«Î ‰»Î√‹¬Î");
+	
+});

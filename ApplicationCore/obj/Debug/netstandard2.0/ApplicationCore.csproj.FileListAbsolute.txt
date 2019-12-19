@@ -1,0 +1,11 @@
+E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\ApplicationCore.AssemblyInfoInputs.cache
+E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\ApplicationCore.AssemblyInfo.cs
+E:\Work\WeAppEip\ApplicationCore\bin\Debug\netstandard2.0\WeAppEip.ApplicationCore.deps.json
+E:\Work\WeAppEip\ApplicationCore\bin\Debug\netstandard2.0\WeAppEip.ApplicationCore.dll
+E:\Work\WeAppEip\ApplicationCore\bin\Debug\netstandard2.0\WeAppEip.ApplicationCore.pdb
+E:\Work\WeAppEip\ApplicationCore\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.dll
+E:\Work\WeAppEip\ApplicationCore\bin\Debug\netstandard2.0\System.ComponentModel.Annotations.xml
+E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\ApplicationCore.csproj.CopyComplete
+E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\WeAppEip.ApplicationCore.dll
+E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\WeAppEip.ApplicationCore.pdb
+E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\ApplicationCore.csprojAssemblyReference.cache

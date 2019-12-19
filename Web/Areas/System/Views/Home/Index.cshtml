@@ -1,0 +1,477 @@
+﻿@*@using CityCell.Services.IService.ViewModel.SysUser
+    @{
+        List<SysModuleDto>
+    menuFirst = ViewData["MenuFirst"] as List<SysModuleDto>
+        ;
+        List<SysModuleDto>
+            menuSecond = ViewData["MenuSecond"] as List<SysModuleDto>
+                ;
+                }*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>@ViewBag.Title</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    @*
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <!-- Font Awesome -->
+    @*
+        <link href="~/Content/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    @*
+        <link href="~/Content/Ionicons/css/ionicons.min.css" rel="stylesheet" />*@
+    <link href="~/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+
+    <link href="~/AdminLTE/css/AdminLTE.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+    page. However, you can choose any other skin. Make sure you
+    apply the skin class to the body tag so the changes take effect. -->
+
+    <link href="~/AdminLTE/css/skins/skin-blue.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link href="~/AdminLTE/css/GoogleFont.css" rel="stylesheet" />
+    <link href="~/Dialog/css/ui-dialog.css" rel="stylesheet" />
+    <link href="~/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/FormValidator/bootstrapValidator.css" rel="stylesheet" />
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="/System/Home/Index" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                @*<span class="logo-mini"><b>C</b>ity</span>*@
+                <span class="logo-mini"><b>S</b>ystem</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>后台管理系统</b></span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation" style="height: 50px;">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <!-- Menu toggle button -->
+                            @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            *@
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <!-- inner menu: contains the messages -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <!-- User Image -->
+                                                    <img src="~/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <!-- Message title and timestamp -->
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <!-- The message -->
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <!-- end message -->
+                                    </ul>
+                                    <!-- /.menu -->
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- /.messages-menu -->
+                        <!-- Notifications Menu -->
+                        <li class="dropdown notifications-menu">
+                            <!-- Menu toggle button -->
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- Inner Menu: contains the notifications -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start notification -->
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                        <!-- end notification -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks Menu -->
+                        <li class="dropdown tasks-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <!-- Inner menu: contains the tasks -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <!-- Task title and progress text -->
+                                                <h3>
+                                                    Design some buttons
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <!-- The progress bar -->
+                                                <div class="progress xs">
+                                                    <!-- Change the css width attribute to simulate progress -->
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 50px;">
+                                <!-- The user image in the navbar-->
+                                <img src="~/AdminLTE/img/avatar04.png" class="user-image" alt="User Image">
+                                @*<img src="../../@ViewBag.HeadPortrait" class="img-circle" style="width: 25px; height: 25px;" alt="User Image">*@
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">@ViewBag.UserName</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="~/AdminLTE/img/avatar04.png" class="img-circle" alt="User Image">
+                                    @*<img src="../../@ViewBag.HeadPortrait" class="img-circle" style="width: 90px; height: 90px;" alt="User Image">*@
+
+                                    <p>
+                                        @ViewBag.UserName
+                                        <small>【@ViewBag.RoleName】</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body hidden">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat" id="updatePwd">修改密码</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="/System" class="btn btn-default btn-flat">注销</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="~/AdminLTE/img/avatar04.png" class="img-circle" style="width: 45px; height: 45px;" alt="User Image">
+                        @*<img src="../../@ViewBag.HeadPortrait" class="img-circle" style="width: 45px; height: 45px;" alt="User Image">*@
+                    </div>
+                    <div class="pull-left info">
+                        <p />
+                        <p>@ViewBag.UserName</p>
+                        <!-- Status -->
+                        @*<a href="#"><i class="fa fa-circle text-success"></i> Online</a>*@
+                    </div>
+                </div>
+
+                <!-- search form (Optional) -->
+                <form action="#" method="get" class="sidebar-form hidden">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">导航</li>
+                    <!-- Optionally, you can add icons to the links -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class='fa fa-book'></i> <span>内容管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#" data-url="/System/Banner/Index" data-navTwo="Banner管理" data-navThree=""><i class="fa fa-circle-o"></i>Banner管理</a></li>
+                            <li><a href="#" data-url="/System/News/Index" data-navTwo="新闻管理" data-navThree=""><i class="fa fa-circle-o"></i>新闻管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class='fa fa-users'></i> <span>客户管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#" data-url="/" data-navTwo="/" data-navThree=""><i class="fa fa-circle-o"></i>客户管理</a></li>
+                        </ul>
+                    </li>
+                    @*
+                        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>*@
+                    @*
+                        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>*@
+                    @*@if (menuFirst != null && menuFirst.Count > 0)
+                        {
+                        foreach (SysModuleDto first in menuFirst)
+                        {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class='@first.Icon'></i> <span>@first.Name</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                @if (menuSecond != null)
+                                {
+                                foreach (SysModuleDto second in menuSecond)
+                                {
+                                if (first.Id == second.ParentId)
+                                {
+                                <li><a href="#" data-url=@second.ModulePath data-navTwo=@first.Name data-navThree=@second.Name><i class="fa fa-circle-o"></i>@second.Name</a></li>
+                                }
+                                }
+                                }
+                            </ul>
+                        </li>
+                        }
+                        }*@
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1 id="contentTitle">
+                    @*<small>Optional description</small>*@
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/System/Home/index"><i class="fa fa-dashboard"></i>首页</a></li>
+                    <li><a href="#" id="nav_two"></a></li>
+                    <li class="active" id="nav_three"></li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content container-fluid" id="content">
+
+                <!--------------------------
+                | Your Page Content Here |
+                -------------------------->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane active" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:;">
+                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                    <p>Will be 23 on April 24th</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:;">
+                                <h4 class="control-sidebar-subheading">
+                                    Custom Template Design
+                                    <span class="pull-right-container">
+                                        <span class="label label-danger pull-right">70%</span>
+                                    </span>
+                                </h4>
+
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+        immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/respond.min.js"></script>
+    <script src="~/Dialog/js/dialog-plus-min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE/js/adminlte.js"></script>
+    <script src="~/Dialog/js/dialog-plus-min.js"></script>
+    <script src="~/FormValidator/bootstrapValidator.min.js"></script>
+    <script src="~/FormValidator/zh_CN.js"></script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <script src="~/js/common.js"></script>
+    <script>
+        $(function () {
+            //首页默认加载
+            $("a[data-url]").click(function (evt) {
+                var url = $(this).data("url") + "?ran=" + Math.random();
+                loadPage(url);
+
+                $("ul.treeview-menu li").removeClass("active");
+                $(this).parent().addClass("active");
+
+                $("#contentTitle").html($(this).data("navthree"));       //子窗体标题
+                $("#nav_two").html($(this).data("navtwo"));
+                $("#nav_three").html($(this).data("navthree"));
+            });
+
+            //首页默认加载
+            $("#updatePwd").click(function (evt) {
+                dig.addPage("修改密码", "/System/SysUser/UpdatePwd", 1020, 450, function () {
+                    if (this.returnValue === "yes") {
+                        location.reload();
+                    }
+                });
+            });
+        });</script>
+    <script src="~/AdminLTE/js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div style="padding-bottom: 30px; padding-top: 30px;">
+                    <label class="col-md-1 control-label" style="text-align: right; margin-top: 5px">标题：</label>
+                    <div class="col-md-2">
+                        <input class="form-control" id="keyword" name="keyword" type="text" value="" />
+                    </div>
+                    <label class="col-md-1 control-label" style="text-align: right; margin-top: 5px">类型：</label>
+                    <div class="col-md-2">
+                        <select id="newsType" name="newsType" class="form-control">
+                            <option value="-1">全部</option>
+                            @foreach (var item in (ViewData["newsType"] as List<SelectListItem>))
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="button" value="查询" class="btn btn-warning" id="btn_search" />
+                    </div>
+                    <div class="col-md-1" style="float: right">
+                        <input type="button" value="新增" class="btn btn-primary" id="btn_add" />
+                    </div>
+                </div>
+                <div class="box-body">
+                    <table class="table table-striped table text-nowrap" id="list"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link href="~/css/bootstrap-table.css" rel="stylesheet" />
+<script src="~/js/bootstrap-table.min.js"></script>
+<script src="~/js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    $(function () {
+        initTable();
+
+        // 查询
+        $("#btn_search").on("click", function () {
+            $("#list").bootstrapTable("refresh", {
+                url: "/System/News/GetList",
+                query: getQueryParameter
+            });
+        });
+
+        //添加
+        $("#btn_add").on("click", function () {
+            dig.addPage("添加新闻", "/System/News/Detail", 1020, 450, function () {
+                if (this.returnValue === 200) {
+                    reloadPage();
+                }
+            });
+        });
+    });
+
+    function initTable() {
+        $("#list").bootstrapTable({
+            method: "Post",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/System/News/GetList",//请求数据的地址
+            striped: true,//是否显示行间隔色
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pagination: true,//是否分页
+            sidePagination: "server",//指定服务器端分页
+            pageSize: 10,//单页记录数
+            pageList: [10],
+            showColumns: false,
+            uniqueId: "Id",
+            clickToSelect: true,//是否启用点击选中行
+            toolbarAlign: "left",//工具栏对齐方式
+            buttonsAlign: "right",//按钮对齐方式
+            toolbar: "#toolbar",
+            search: false,
+            strictSearch: true,
+            showRefresh: false,                  //是否显示刷新按钮
+            silent: true,  //刷新事件必须设置
+            paginationPreText: "上一页",
+            paginationNextText: "下一页",
+            queryParams: getQueryParameter,
+            locale: "zh-CN",
+            columns: [
+                {
+                    title: "序号",
+                    align: "center",
+                    formatter: function (value, row, index) {
+                        return index + 1;
+                    }
+                },
+                {
+                    field: "title",
+                    title: "标题",
+                    align: "center",
+                },
+                {
+                    field: "type",
+                    title: "类型",
+                    align: "center",
+                    formatter: function (value, row, index) {
+                        if (value == 1) {
+                            return "新闻动态";
+                        }
+                        else (value == 2)
+                        {
+                            return "培训活动";
+                        }
+                    }
+                },
+                {
+                    field: "order",
+                    title: "排序",
+                    align: "center",
+                },
+                {
+                    field: "createDate",
+                    title: "创建时间",
+                    align: "center",
+                },
+                {
+                    field: "operation",
+                    title: "操作",
+                    align: "center",
+                    width: "100px",
+                    formatter: function (value, row, index) {
+                        return "<a class='edit' href='javascript:void(0)'><span class='glyphicon glyphicon-pencil'><\/span><\/a>" +
+                            "&nbsp;&nbsp;<a class='delete' href='javascript:void(0)'><span class='glyphicon glyphicon-remove'><\/span><\/a>";
+                    },
+                    events: "operateEvents"
+                }
+            ]
+        });
+
+        window.operateEvents = {
+            "click .edit": function (e, value, row, index) {
+                dig.addDefaultPage("详情", "/System/News/Detail?id=" + row.id, function () {
+                    if (this.returnValue === 200) {
+                        refreshTable();
+                    }
+                });
+            },
+            "click .delete": function (e, value, row, index) {
+                dig.confirm("确认删除", "删除记录后不可恢复，您确定吗？", function () {
+                    $.post("/System/News/Delete/", { id: row.id }, function (result) {
+                        if (result.code != 200) {
+                            dig.error(result.Msg);
+                        } else {
+                            reloadPage();
+                        }
+                    });
+                });
+            },
+        }
+    }
+
+    //查询参数
+    function getQueryParameter(params) {
+        return {
+            title: $("#keyword").val(),
+            type: $("#newsType").val(),
+            skipCount: params.offset,
+            takeCount: params.limit
+        };
+    }
+
+    function refreshTable() {
+        $("#list").bootstrapTable("refresh", {
+            url: "/System/News/GetList",
+            query: getQueryParameter
+        });
+    }
+</script>
