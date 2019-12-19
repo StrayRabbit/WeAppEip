@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/news/news",
+    "pages/news/news-details",
+    "pages/activities/activity",
+    "pages/contact/contact"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "人事培训",
+    "navigationBarBackgroundColor": "#fbf9fe",
+    "backgroundColor": "#fbf9fe"
+  },
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#459ae9",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index_selected.png",
+        "text": "公司盛况"
+      },
+      {
+        "pagePath": "pages/activities/activity",
+        "iconPath": "images/product.png",
+        "selectedIconPath": "images/product_selected.png",
+        "text": "培训活动"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "iconPath": "images/contact.png",
+        "selectedIconPath": "images/contact_selected.png",
+        "text": "联系我们"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

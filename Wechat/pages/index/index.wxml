@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="index">
+    <view class="slider">
+        <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+            <block wx:for="{{swipers}}">
+                <swiper-item>
+                    <navigator url="#" class="widget">
+                        <image mode="widthFix" src="{{item.imageUrl}}" class="slide-image" width="" height=""></image>
+                    </navigator>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="news">
+        <text class="news-title">新闻动态</text>
+
+        <block wx:for="{{news}}">
+        <navigator url="/pages/news/news-details?id={{item.id}}">
+        <view class="news-item line">
+            <view class="news-item-pic">
+                <image mode="widthFix" src="{{item.imageUrl}}" class="news-item-image" width="" height=""></image>
+            </view>
+            <view class="news-item-words">
+                <view class="news-item-title"><text>{{item.title}}</text></view>
+                <view class="news-item-content"><text>{{item.introduction}}</text></view>
+            </view>
+        </view>
+        </navigator>
+        </block>
+
+        <view class="widgets__list widgets__list_show">
+            <navigator url="/pages/news/news?cat={{cat}}" class="widget_more">
+                <text class="news-more">查看更多</text>
+                <image class="widget__arrow" src="/images/arrowright.png" mode="aspectFill" />
+                <view class="widget__line widget__line_first"></view>
+            </navigator>
+        </view>
+    </view>
+</view>
