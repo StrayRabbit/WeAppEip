@@ -46,6 +46,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\bootstrap-treeview\js\bootstrap-treeview.js" />
+    <None Include="wwwroot\bootstrap-treeview\js\bootstrap-treeview.min.js" />
     <None Include="wwwroot\ckeditor\adapters\jquery.js" />
     <None Include="wwwroot\ckeditor\build-config.js" />
     <None Include="wwwroot\ckeditor\ckeditor.js" />
@@ -113,6 +115,7 @@
     <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\config\_defaults.scss" />
     <None Include="wwwroot\ckeditor\skins\bootstrapck\scss\dialog\dialog.scss" />
     <None Include="wwwroot\ckeditor\styles.js" />
+    <None Include="wwwroot\switchery\switchery.min.js" />
     <None Include="wwwroot\Upload\Banner\0b75141573cf4eb2ae4157fb7b01f7d2.jpg" />
     <None Include="wwwroot\Upload\Banner\816de126dd7a482192139aa99c284249.jpg" />
   </ItemGroup>

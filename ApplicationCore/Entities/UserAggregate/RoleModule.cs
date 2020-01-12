@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using ApplicationCore.Interfaces;
 
 namespace ApplicationCore.Entities.UserAggregate
 {
@@ -6,7 +7,7 @@ namespace ApplicationCore.Entities.UserAggregate
     /// 模块角色映射
     /// </summary>
     [Table("sys_rolemodules")]
-    public class RoleModule : BaseEntity<int>
+    public class RoleModule : BaseEntity<int>, IAggregateRoot
     {
         [Column("roleid")]
         public int RoleId { get; set; }

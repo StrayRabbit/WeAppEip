@@ -8,5 +8,13 @@ namespace Web.Interfaces
     {
         Task<PaginationViewModel<ModuleViewModel>> GetItemsAsync(string name, int skipCount = 0, int takeCount = 0);
         Task<ModuleViewModel> GetItemAsync(int id);
+        Task<dynamic> GetTreeData();
+
+        /// <summary>
+        /// 判断是否有子菜单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> IsHaveChildAsync(int id);
     }
 }

@@ -8,4 +8,3 @@ E:\Work\WeAppEip\ApplicationCore\bin\Debug\netstandard2.0\System.ComponentModel.
 E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\ApplicationCore.csproj.CopyComplete
 E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\WeAppEip.ApplicationCore.dll
 E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\WeAppEip.ApplicationCore.pdb
-E:\Work\WeAppEip\ApplicationCore\obj\Debug\netstandard2.0\ApplicationCore.csprojAssemblyReference.cache

@@ -56,6 +56,14 @@ namespace WeAppEip.Infrastructure.Data
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(ISpecification<T> spec)
+        {
+            var query = SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
+
+            _dbContext.Set<T>().RemoveRange(query);
+            await _dbContext.SaveChangesAsync();
+        }
+
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);

@@ -39,7 +39,7 @@ namespace ApplicationCore.Entities.SystemAggregate
         /// <summary>
         /// 是否显示
         /// </summary>
-        [Column("isshow")]
+        [Column("isshow", TypeName = "BIT")]
         public bool IsShow { get; set; }
 
         /// <summary>
@@ -78,5 +78,14 @@ namespace ApplicationCore.Entities.SystemAggregate
         [Column("updatedate")]
         public DateTime UpdateDate { get; set; }
         #endregion
+
+        #region 导航属性
+        //public virtual Module ParentModule { get; set; }
+        #endregion
     }
+
+    //public class ModuleMap : EntityTypeConfiguration<Module>
+    //{
+
+    //}
 }

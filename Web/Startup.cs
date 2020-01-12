@@ -37,6 +37,9 @@ namespace Web
             services.AddScoped<INewsRepository, NewsRepository>();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<INewsViewModelService, NewsViewModelService>();
+            services.AddScoped<IModuleRepository, ModuleReponsitory>();
+            services.AddScoped<IModuleService, ModuleService>();
+            services.AddScoped<IModuleViewModelService, ModuleViewModelService>();
 
             services.Configure<ConfigurationFile>(Configuration.GetSection("ConfigurationFile"));
 

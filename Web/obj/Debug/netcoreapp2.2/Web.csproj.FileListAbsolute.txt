@@ -48,3 +48,5 @@ E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Web.TagHelpers.output.cache
 E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Web.Views.pdb
 E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Web.dll
 E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Web.pdb
+E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Razor\Areas\System\Views\Module\Index.cshtml.g.cs
+E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Razor\Areas\System\Views\Module\SelectIco.cshtml.g.cs

@@ -25,5 +25,13 @@ namespace ApplicationCore.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Task DeleteByIdAsync(int id);
+
+        /// <summary>
+        /// 删除角色模块里边的模块
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task DeleteModulesInRoleModules(int id);
+
     }
 }

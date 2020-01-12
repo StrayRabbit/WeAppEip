@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using ApplicationCore.Entities.SystemAggregate;
+using ApplicationCore.Entities.UserAggregate;
 using ApplicationCore.Interfaces;
+using ApplicationCore.Specifications;
 
 namespace ApplicationCore.Services
 {
@@ -10,6 +12,7 @@ namespace ApplicationCore.Services
     public class ModuleService : IModuleService
     {
         private readonly IAsyncRepository<Module> _moduleRepository;
+        private readonly IAsyncRepository<RoleModule> _roleModuleRepository;
 
         public ModuleService(IAsyncRepository<Module> moduleRepository)
         {
@@ -30,6 +33,12 @@ namespace ApplicationCore.Services
         {
             var entity = await _moduleRepository.GetByIdAsync(id);
             await _moduleRepository.DeleteAsync(entity);
+        }
+
+        public async Task DeleteModulesInRoleModules(int moduleId)
+        {
+            var query = new ModuleFilterChildsSpecification(moduleId);
+            await _moduleRepository.DeleteAsync(query);
         }
     }
 }

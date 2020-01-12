@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using ApplicationCore.Entities.SystemAggregate;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Specifications;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using WeAppEip.Web.ViewModels;
 using Web.Interfaces;
 using Web.ViewModels.User;
@@ -64,6 +63,44 @@ namespace WeAppEip.Web.Services
                 Order = entity.Order,
                 ParentId = entity.ParentId,
             };
+        }
+
+        public async Task<dynamic> GetTreeData()
+        {
+            var models = await _moduleRepository.ListAllAsync();
+
+            return models.Where(item => item.IsShow)
+                .Where(item => item.Levels == 1)
+                .OrderByDescending(item => item.Order)
+                .ThenBy(item => item.Id)
+                .Select(t => new
+                {
+                    id = t.Id,
+                    text = t.Name,
+                    leves = t.Levels,
+                    parentId = t.ParentId,
+                    parentName = models.FirstOrDefault(item => item.Id == t.ParentId)?.Name,
+                    nodes = models.Where(s => s.ParentId == t.Id).OrderByDescending(s => s.Order).ThenBy(s => s.Id).Select(s => new
+                    {
+                        id = s.Id,
+                        text = s.Name,
+                        leves = s.Levels,
+                        parentId = s.ParentId,
+                        parentName = models.FirstOrDefault(item => item.Id == s.ParentId)?.Name,
+                    })
+                });
+        }
+
+        /// <summary>
+        /// 判断是否有子菜单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> IsHaveChildAsync(int id)
+        {
+            var filterChildCountSpecification = new ModuleFilterChildCountSpecification(id);
+
+            return await _moduleRepository.CountAsync(filterChildCountSpecification) > 0;
         }
     }
 }

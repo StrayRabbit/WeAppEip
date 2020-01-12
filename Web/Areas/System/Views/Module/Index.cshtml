@@ -1,15 +1,308 @@
-﻿
-@{
-    Layout = null;
-}
+﻿<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Profile Image -->
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <div id="tree"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" data-btn-type="addRoot"><li class="fa fa-plus">&nbsp;新增一级菜单</li></button>
+                        <button type="button" class="btn btn-default" data-btn-type="add"><li class="fa fa-plus">&nbsp;新增二级菜单</li></button>
+                        <button type="button" class="btn btn-default" data-btn-type="delete"><li class="fa fa-remove">&nbsp;删除当前菜单</li></button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form class="form-horizontal" id="form">
+                        <input type="hidden" name="parentId" />
+                        <div class="form-group">
+                            <label for="parentName" class="col-sm-2 control-label">上级</label>
 
-<!DOCTYPE html>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" disabled="disabled" id="parentName" name="parentName" placeholder="上级">
+                                <input type="hidden" id="parentId" />
+                                <input type="hidden" id="id" />
+                            </div>
+                        </div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-</body>
-</html>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">名称</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="code" class="col-sm-2 control-label">编码</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="code" name="code" placeholder="编码">
+                                <input type="hidden" id="Levels" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="url" class="col-sm-2 control-label">URL</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="url" name="url" placeholder="URL">
+                            </div>
+                        </div>
+                        <div class="form-group" id="divSelect">
+                            <label class="col-sm-2 control-label">图标</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="Icon" id="Icon" readonly="readonly" style="background: white;">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info btn-flat" id="btn_select">选择图标</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="code" class="col-sm-2 control-label">排序</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="OrderBy" name="OrderBy" placeholder="数字越大排序越靠前">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否可用</label>
+                            <div class="col-sm-9">
+                                <label class="jswitch_line">
+                                    @*@Html.CheckBox("IsShow", new { @class = "js-switch" })*@
+                                    <input type="checkbox" id="IsShow" name="IsShow" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary" id="btnSave">
+                                    <i class="fa fa-save">&nbsp;保存</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+<link href="~/bootstrap-treeview/css/bootstrap-treeview.min.css" rel="stylesheet" />
+<link href="~/switchery/switchery.min.css" rel="stylesheet" />
+
+<link href="~/bootstrap-treeview/js/bootstrap-treeview.min.js" rel="stylesheet" />
+<link href="~/switchery/switchery.min.js" rel="stylesheet" />
+
+<script>
+    $(function () {
+        initTree(0);
+        ValidateForm();
+
+        $("#btnSave").on("click", function () {
+            var data = $("#form").data("bootstrapValidator");
+            if (data) {
+                // 修复记忆的组件不验证
+                data.validate();
+                if (!data.isValid()) {
+                    return false;
+                }
+
+                var form = {
+                    Id: $("#id").val(),
+                    ParentId: $("#parentId").val(),
+                    Name: $("#name").val(),
+                    Alias: $("#code").val(),
+                    ModulePath: $("#url").val(),
+                    IsShow: $("input[name='IsShow'").is(":checked"),
+                    Levels: $("#Levels").val(),
+                    OrderBy: $("#OrderBy").val(),
+                    Icon: $("#Icon").val(),
+                };
+
+                $.post("/System/Module/Save", form, function (result) {
+                    SubAjax.Success(result);
+                    //loadPage("/System/Module/Index");
+                });
+            }
+        });
+
+        //新增根菜单
+        $("button[data-btn-type=addRoot]").on("click", function () {
+            $("#parentName").val('后台管理系统');
+            $("#name").val('');
+            $("#code").val('');
+            $("#OrderBy").val('');
+            $("#url").val('javascript:void(0)');
+            $("#parentId").val('1');
+            $("#Levels").val('1');
+            $("#id").val("0");
+            $("#IsShow").prop("checked", true);
+            $("#Icon").val('');
+
+            $("#divSelect").attr("style", "display:block");
+        });
+
+        //新增二级菜单
+        $("button[data-btn-type=add]").on("click", function () {
+            var selectNode = $('#tree').treeview('getSelected');
+            if (selectNode.length > 0) {
+                var node = selectNode[0];
+                var parentId = -1;
+                var parentName = "";
+                var level = 2;      //默认二级
+
+                if (node.leves === 1) {
+                    parentId = node.id;
+                    parentName = node.text;
+                }
+                else if (node.leves === 2) {
+                    parentId = node.parentId;
+                    parentName = node.parentName;
+                }
+
+                $("#parentName").val(parentName);
+                $("#name").val('');
+                $("#code").val('');
+                $("#OrderBy").val('');
+                $("#url").val('');
+                $("#parentId").val(parentId);
+                $("#Levels").val(level);
+                $("#id").val("0");
+                $("#IsShow").prop("checked", true);
+                $("#Icon").val('');
+                $("#divSelect").attr("style", "display:none");
+            } else {
+                dig.error("请您先选择菜单!");
+            }
+        });
+
+        //删除当前菜单
+        $("button[data-btn-type=delete]").on("click", function () {
+            var selectNode = $('#tree').treeview('getSelected');
+            if (selectNode.length > 0) {
+                $.post("/System/Module/Delete", { id: selectNode[0].id }, function (result) {
+                    SubAjax.Success(result);
+                });
+            } else {
+                dig.error("请您先选择菜单!");
+            }
+        });
+
+        $("#btn_select").on("click", function () {
+            SelectIco();
+        });
+    });
+
+    //初始化树形菜单
+    function initTree(selectNodeId) {
+        $.get("/System/Module/GetTreeData", null, function (data) {
+            console.log(data);
+            if (data) {
+                $("#tree").treeview({
+                    data: data,
+                    showBorder: true,
+                    expandIcon: "glyphicon glyphicon-stop",
+                    collapseIcon: "glyphicon glyphicon-unchecked",
+                    levels: 1,
+                    onNodeSelected: function (event, data) {
+                        fillDictForm(data);
+                    }
+                });
+
+                if (data.length == 0)
+                    return;
+                //默认选中第一个节点
+                selectNodeId = selectNodeId || 0;
+                $("#tree").data('treeview').selectNode(selectNodeId);
+                $("#tree").data('treeview').expandNode(selectNodeId);
+                $("#tree").data('treeview').revealNode(selectNodeId);
+            }
+        });
+    }
+
+    //填充form信息
+    function fillDictForm(node) {
+        $.get("/System/Module/GetModuleById", { id: node.id }, function (data) {
+            if (data) {
+                $("#parentName").val(data.ParentModule.Name);
+                $("#name").val(data.Name);
+                $("#code").val(data.Alias);
+                $("#url").val(data.ModulePath);
+                $("#parentId").val(data.ParentModule.Id);
+                $("#Levels").val(data.Levels);
+                $("#id").val(data.Id);
+                $("#OrderBy").val(data.OrderBy);
+                $("#Icon").val(data.Icon);
+
+                if (data.IsShow === true) {
+                    $("#IsShow").prop("checked", true);
+                } else {
+                    $("#IsShow").prop("checked", false);
+                }
+
+                $("#form").data("bootstrapValidator").resetForm();      //刷新验证
+
+                if ($('#Levels').val() === "1") {
+                    $("#divSelect").attr("style", "display:block");
+                } else {
+                    $("#divSelect").attr("style", "display:none");
+                }
+            }
+        });
+    }
+
+    //数据验证
+    function ValidateForm() {
+        $("#form").bootstrapValidator({
+            message: "该项不能为空！",
+            feedbackIcons: {
+                valid: "glyphicon glyphicon-ok",
+                invalid: "glyphicon glyphicon-remove",
+                validating: "glyphicon glyphicon-refresh"
+            },
+            fields: {
+                "name": {
+                    validators: {
+                        notEmpty: { message: "请您输入名称!" }
+                    }
+                },
+                "code": {
+                    validators: {
+                        notEmpty: { message: "请您输入编码!" }
+                    }
+                },
+                "url": {
+                    validators: {
+                        notEmpty: { message: "请您输入Url!" }
+                    }
+                },
+            }
+        });
+        // 修复bootstrap validator重复向服务端提交bug
+        $("#form").on("success.form.bv", function (e) {
+            e.preventDefault();
+        });
+    }
+
+    //选择商家
+    function SelectIco() {
+        dig.addPage("选择图标", "/System/Module/SelectIco?iconName=" + $("#Icon").val(), 1020, 450, function () {
+            if (this.returnValue)
+                $("#Icon").val(this.returnValue);
+        });
+    }
+</script>
