@@ -41,16 +41,15 @@
 
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="code" class="col-sm-2 control-label">编码</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="code" name="code" placeholder="编码">
                                 <input type="hidden" id="Levels" />
                             </div>
                         </div>
+                        @*<div class="form-group">
+                                <label for="code" class="col-sm-2 control-label">编码</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="code" name="code" placeholder="编码">
+                                </div>
+                            </div>*@
                         <div class="form-group">
                             <label for="url" class="col-sm-2 control-label">URL</label>
 
@@ -101,11 +100,11 @@
     </div>
     <!-- /.row -->
 </section>
-<link href="~/bootstrap-treeview/css/bootstrap-treeview.min.css" rel="stylesheet" />
+<link href="~/bootstrap-treeview/css/bootstrap-treeview.css" rel="stylesheet" />
 <link href="~/switchery/switchery.min.css" rel="stylesheet" />
 
-<link href="~/bootstrap-treeview/js/bootstrap-treeview.min.js" rel="stylesheet" />
-<link href="~/switchery/switchery.min.js" rel="stylesheet" />
+<script src="~/bootstrap-treeview/js/bootstrap-treeview.js"></script>
+<script src="~/switchery/switchery.min.js"></script>
 
 <script>
     $(function () {
@@ -125,7 +124,7 @@
                     Id: $("#id").val(),
                     ParentId: $("#parentId").val(),
                     Name: $("#name").val(),
-                    Alias: $("#code").val(),
+                    //Alias: $("#code").val(),
                     ModulePath: $("#url").val(),
                     IsShow: $("input[name='IsShow'").is(":checked"),
                     Levels: $("#Levels").val(),
@@ -144,7 +143,7 @@
         $("button[data-btn-type=addRoot]").on("click", function () {
             $("#parentName").val('后台管理系统');
             $("#name").val('');
-            $("#code").val('');
+            //$("#code").val('');
             $("#OrderBy").val('');
             $("#url").val('javascript:void(0)');
             $("#parentId").val('1');
@@ -210,7 +209,7 @@
     //初始化树形菜单
     function initTree(selectNodeId) {
         $.get("/System/Module/GetTreeData", null, function (data) {
-            console.log(data);
+            //console.log(data);
             if (data) {
                 $("#tree").treeview({
                     data: data,
@@ -238,17 +237,18 @@
     function fillDictForm(node) {
         $.get("/System/Module/GetModuleById", { id: node.id }, function (data) {
             if (data) {
-                $("#parentName").val(data.ParentModule.Name);
-                $("#name").val(data.Name);
-                $("#code").val(data.Alias);
-                $("#url").val(data.ModulePath);
-                $("#parentId").val(data.ParentModule.Id);
-                $("#Levels").val(data.Levels);
-                $("#id").val(data.Id);
-                $("#OrderBy").val(data.OrderBy);
-                $("#Icon").val(data.Icon);
+                //console.log(data);
+                $("#parentName").val(data.parentModule.name);
+                $("#parentId").val(data.parentModule.id);
 
-                if (data.IsShow === true) {
+                $("#name").val(data.name);
+                $("#url").val(data.modulePath);
+                $("#Levels").val(data.levels);
+                $("#id").val(data.id);
+                $("#OrderBy").val(data.orderBy);
+                $("#Icon").val(data.icon);
+
+                if (data.isShow === true) {
                     $("#IsShow").prop("checked", true);
                 } else {
                     $("#IsShow").prop("checked", false);

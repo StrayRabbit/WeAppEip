@@ -6,12 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Logging;
 using WeAppEip.Web.Extensions;
 using WeAppEip.Web.ViewModels;
+using Web.Interfaces;
+using Web.ViewModels.User;
 
 namespace Web.Areas.System.Controllers
 {
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly IModuleViewModelService _moduleViewModelService;
+
+        public HomeController(IModuleViewModelService moduleViewModelService)
+        {
+            this._moduleViewModelService = moduleViewModelService;
+        }
+
+        public async Task<IActionResult> Index()
         {
             try
             {
@@ -21,13 +30,13 @@ namespace Web.Areas.System.Controllers
                     return Redirect("/System");
                 }
 
-                //List<SysModuleDto> query = _sysModuleService.GetModuleDto(user.Modules);
+                List<ModuleViewModel> query = await _moduleViewModelService.ListAllAsync();
 
                 ViewData["UserName"] = user.Name;       //显示名称
                 ViewData["RoleName"] = user.RoleName;     //角色
 
-                //ViewData["MenuFirst"] = query.Where(t => t.Levels == 1).ToList();
-                //ViewData["MenuSecond"] = query.Where(t => t.Levels == 2).ToList();
+                ViewData["MenuFirst"] = query.Where(t => t.Levels == 1).ToList();
+                ViewData["MenuSecond"] = query.Where(t => t.Levels == 2).ToList();
             }
             catch (Exception ex)
             {

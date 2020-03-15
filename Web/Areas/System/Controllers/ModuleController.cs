@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using WeAppEip.Web.ViewModels;
 using Web.Interfaces;
-using Web.ViewModels.User;
 
 namespace Web.Areas.System.Controllers
 {
@@ -35,9 +32,9 @@ namespace Web.Areas.System.Controllers
 
         #region 获取数据
         [HttpGet]
-        public JsonResult GetTreeData()
+        public async Task<JsonResult> GetTreeData()
         {
-            dynamic data = _moduleViewModelService.GetTreeData();
+            dynamic data = await _moduleViewModelService.GetTreeData();
             return Json(data);
         }
 

@@ -21,6 +21,7 @@ namespace WeAppEip.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //builder.ApplyConfiguration(new ModuleEntityConfiguration());
         }
     }
 }

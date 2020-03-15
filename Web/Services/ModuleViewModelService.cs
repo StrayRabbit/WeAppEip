@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ApplicationCore.Entities.SystemAggregate;
 using ApplicationCore.Interfaces;
@@ -50,6 +51,8 @@ namespace WeAppEip.Web.Services
         public async Task<ModuleViewModel> GetItemAsync(int id)
         {
             var entity = await _moduleRepository.GetByIdAsync(id);
+            var parentModule = await _moduleRepository.GetByIdAsync(entity.ParentId);
+
             return new ModuleViewModel()
             {
                 CreateUserId = entity.CreateUserId,
@@ -62,6 +65,11 @@ namespace WeAppEip.Web.Services
                 Name = entity.Name,
                 Order = entity.Order,
                 ParentId = entity.ParentId,
+                ParentModule = new ModuleViewModel()
+                {
+                    Id = parentModule?.Id ?? 1,
+                    Name = parentModule?.Name ?? "后台管理系统",
+                },
             };
         }
 
@@ -101,6 +109,28 @@ namespace WeAppEip.Web.Services
             var filterChildCountSpecification = new ModuleFilterChildCountSpecification(id);
 
             return await _moduleRepository.CountAsync(filterChildCountSpecification) > 0;
+        }
+
+        public async Task<List<ModuleViewModel>> ListAllAsync()
+        {
+            return (await _moduleRepository.ListAllAsync())
+                .Where(item => item.IsShow)
+                .OrderByDescending(item => item.Order)
+                .ThenBy(item => item.Id).Select(item => new ModuleViewModel()
+                {
+                    CreateDate = item.CreateDate,
+                    CreateUserId = item.CreateUserId,
+                    Icon = item.Icon,
+                    Id = item.Id,
+                    IsShow = item.IsShow,
+                    Levels = item.Levels,
+                    ModulePath = item.ModulePath,
+                    Name = item.Name,
+                    Order = item.Order,
+                    ParentId = item.ParentId,
+                    UpdateDate = item.UpdateDate,
+                    UpdateUserId = item.UpdateUserId,
+                }).ToList();
         }
     }
 }

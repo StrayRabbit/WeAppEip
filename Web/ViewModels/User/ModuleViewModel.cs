@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApplicationCore.Entities.SystemAggregate;
+using System;
 
 namespace Web.ViewModels.User
 {
@@ -60,5 +61,13 @@ namespace Web.ViewModels.User
         /// 修改日期
         /// </summary>
         public DateTime UpdateDate { get; set; }
+
+
+        public ModuleViewModel ParentModule { get; set; }
+
+        public static implicit operator ModuleViewModel(Module v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

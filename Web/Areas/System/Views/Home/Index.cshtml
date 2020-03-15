@@ -1,14 +1,8 @@
-﻿@*@using CityCell.Services.IService.ViewModel.SysUser
-    @{
-        List<SysModuleDto>
-    menuFirst = ViewData["MenuFirst"] as List<SysModuleDto>
-        ;
-        List<SysModuleDto>
-            menuSecond = ViewData["MenuSecond"] as List<SysModuleDto>
-                ;
-                }*@
+﻿@using Web.ViewModels.User
+
 @{
-    Layout = null;
+    List<ModuleViewModel> menuFirst = ViewData["MenuFirst"] as List<ModuleViewModel>;
+    List<ModuleViewModel> menuSecond = ViewData["MenuSecond"] as List<ModuleViewModel>;
 }
 
 <!DOCTYPE html>
@@ -265,70 +259,32 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">导航</li>
                     <!-- Optionally, you can add icons to the links -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class='fa fa-book'></i> <span>内容管理</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#" data-url="/System/Banner/Index" data-navTwo="Banner管理" data-navThree=""><i class="fa fa-circle-o"></i>Banner管理</a></li>
-                            <li><a href="#" data-url="/System/News/Index" data-navTwo="新闻管理" data-navThree=""><i class="fa fa-circle-o"></i>新闻管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class='fa fa-users'></i> <span>客户管理</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#" data-url="/" data-navTwo="/" data-navThree=""><i class="fa fa-circle-o"></i>客户管理</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class='fa fa-book'></i> <span>系统管理</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="#" data-url="/System/Module/Index" data-navTwo="模块管理" data-navThree=""><i class="fa fa-circle-o"></i>模块管理</a></li>
-                        </ul>
-                    </li>
-                    @*
-                        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>*@
-                    @*
-                        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>*@
-                    @*@if (menuFirst != null && menuFirst.Count > 0)
+                    @if (menuFirst != null && menuFirst.Count > 0)
+                    {
+                        foreach (ModuleViewModel first in menuFirst)
                         {
-                        foreach (SysModuleDto first in menuFirst)
-                        {
-                        <li class="treeview">
-                            <a href="#">
-                                <i class='@first.Icon'></i> <span>@first.Name</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                @if (menuSecond != null)
-                                {
-                                foreach (SysModuleDto second in menuSecond)
-                                {
-                                if (first.Id == second.ParentId)
-                                {
-                                <li><a href="#" data-url=@second.ModulePath data-navTwo=@first.Name data-navThree=@second.Name><i class="fa fa-circle-o"></i>@second.Name</a></li>
-                                }
-                                }
-                                }
-                            </ul>
-                        </li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class='@first.Icon'></i> <span>@first.Name</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    @if (menuSecond != null)
+                                    {
+                                        foreach (ModuleViewModel second in menuSecond)
+                                        {
+                                            if (first.Id == second.ParentId)
+                                            {
+                                                <li><a href="#" data-url=@second.ModulePath data-navTwo=@first.Name data-navThree=@second.Name><i class="fa fa-circle-o"></i>@second.Name</a></li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </li>
                         }
-                        }*@
+                    }
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>

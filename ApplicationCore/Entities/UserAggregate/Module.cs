@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using ApplicationCore.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ApplicationCore.Entities.SystemAggregate
 {
@@ -78,14 +80,18 @@ namespace ApplicationCore.Entities.SystemAggregate
         [Column("updatedate")]
         public DateTime UpdateDate { get; set; }
         #endregion
-
-        #region 导航属性
-        //public virtual Module ParentModule { get; set; }
-        #endregion
     }
 
-    //public class ModuleMap : EntityTypeConfiguration<Module>
+    //public class ModuleEntityConfiguration : IEntityTypeConfiguration<Module>
     //{
+    //    public void Configure(EntityTypeBuilder<Module> builder)
+    //    {
+    //        builder.HasKey(p => p.Id);
+    //        builder.HasKey(p => p.ParentId);
 
+    //        builder.HasOne(p => p.ParentModule)
+    //            .WithMany()
+    //            .HasForeignKey(p => p.ParentId);
+    //    }
     //}
 }
