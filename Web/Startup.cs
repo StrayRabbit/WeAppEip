@@ -11,6 +11,7 @@ using WeAppEip.Infrastructure.Data;
 using WeAppEip.Web.Services;
 using WeAppEip.Web.ViewModels.Configuration;
 using Web.Interfaces;
+using Web.Services;
 
 namespace Web
 {
@@ -40,6 +41,9 @@ namespace Web
             services.AddScoped<IModuleRepository, ModuleReponsitory>();
             services.AddScoped<IModuleService, ModuleService>();
             services.AddScoped<IModuleViewModelService, ModuleViewModelService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerViewModelService, CustomerViewModelService>();
 
             services.Configure<ConfigurationFile>(Configuration.GetSection("ConfigurationFile"));
 

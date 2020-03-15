@@ -1,4 +1,6 @@
 <!--index.wxml-->
+<!-- 需要使用 button 来授权登录 -->
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 <view class="index">
     <view class="slider">
         <swiper class="swiper" indicator-dots="{{indicatorDots}}"

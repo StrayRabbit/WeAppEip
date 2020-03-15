@@ -2,6 +2,7 @@
 using ApplicationCore.Entities.NewsAggregate;
 using ApplicationCore.Entities.SystemAggregate;
 using ApplicationCore.Entities.UserAggregate;
+using ApplicationCore.Entities.CustomersAggregate;
 
 namespace WeAppEip.Infrastructure.Data
 {
@@ -18,6 +19,7 @@ namespace WeAppEip.Infrastructure.Data
         public DbSet<Banner> Banners { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<RoleModule> RoleModules { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

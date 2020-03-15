@@ -8,48 +8,95 @@ Page({
     duration: 1000,
     swipers: [],
     news: [],
-    cat: '17',
+    // cat: '17',
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   onLoad: function () {
     var that = this;
 
-    wx.login({
-      success (res) {
-        if (res.code) {
-          console.log(res);
+    // wx.login({
+    //   success (res) {
+    //     if (res.code) {
+    //       console.log(res);
 
-          
-          //发起网络请求
-          // wx.request({
-          //   url: 'https://test.com/onLogin',
-          //   data: {
-          //     code: res.code
-          //   }
-          // })
-        } else {
-          console.log('登录失败！' + res.errMsg)
+    //       //发起网络请求
+    //       // wx.request({
+    //       //   url: 'https://test.com/onLogin',
+    //       //   data: {
+    //       //     code: res.code
+    //       //   }
+    //       // })
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg)
+    //     }
+    //   }
+    // })
+
+    // 查看是否授权
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              // console.log(res.userInfo)
+            }
+          })
         }
       }
     })
 
-    wx.getUserInfo({
-      success: function(res) {
-        var userInfo = res.userInfo
-        var nickName = userInfo.nickName
-        var avatarUrl = userInfo.avatarUrl
-        var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        var province = userInfo.province
-        var city = userInfo.city
-        var country = userInfo.country
 
-        console.log(res);
-      }
-    })
+    var user=wx.getStorageSync('user') ;  
+    var userInfo=wx.getStorageSync('userInfo'); 
+
+    //添加或者更新用户
+    if(user.openid)
+    {
+      var data={
+        'OpenId':user.openid,
+        'NickName':userInfo.nickName,
+        'AvatarUrl':userInfo.avatarUrl,
+        'Gender':userInfo.gender,
+        'Country':userInfo.country,
+        'Province':userInfo.province,
+        'City':userInfo.city,
+      };
+      console.log(data);
+      wx.request({
+        url: CONFIG.API_URL.POST_Customer,
+        method: 'POST',
+        data: data,
+        header: {
+          'Accept': 'application/json'
+        },
+        success: function (res) {
+          console.log(res);
+        },
+        error:function(res){
+          console.log(res);
+        }
+      })
+    }
+
+    // wx.getUserInfo({
+    //   success: function(res) {
+    //     var userInfo = res.userInfo
+    //     var nickName = userInfo.nickName
+    //     var avatarUrl = userInfo.avatarUrl
+    //     var gender = userInfo.gender //性别 0：未知、1：男、2：女
+    //     var province = userInfo.province
+    //     var city = userInfo.city
+    //     var country = userInfo.country
+
+    //     // console.log(res);
+    //   }
+    // })
 
     //banner
     wx.request({
-      url: CONFIG.API_URL.GET_INDEX,
+      url: CONFIG.API_URL.GET_INDEX+'?count=3',
       method: 'GET',
       data: {},
       header: {
@@ -69,7 +116,7 @@ Page({
                 imageUrl: CONFIG.API_URL.API_BASE+data.rows[i].imageUrl
               }
 
-              // console.log(obj);
+              //  console.log(obj);
               swipers.push(obj);
             }
           }
@@ -120,4 +167,7 @@ Page({
       path: '/pages/index/index'
     }
   },
+  bindGetUserInfo (e) {
+    console.log(e.detail.userInfo)
+  }
 });

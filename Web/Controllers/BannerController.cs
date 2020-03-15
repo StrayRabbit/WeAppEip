@@ -23,12 +23,12 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(int count = 5)
         {
             ReturnResult<PaginationViewModel<BannerViewModel>> result = new ReturnResult<PaginationViewModel<BannerViewModel>>()
             {
                 Code = ReturnCode.Success,
-                Data = await _bannerViewModelService.GetBannerItemsAsync(null)
+                Data = await _bannerViewModelService.GetBannerItemsAsync(null, 0, count)
             };
 
             return Ok(result);
