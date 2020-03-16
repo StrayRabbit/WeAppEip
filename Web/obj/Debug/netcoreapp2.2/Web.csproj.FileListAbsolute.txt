@@ -50,3 +50,4 @@ E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Web.pdb
 E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Razor\Areas\System\Views\Module\Index.cshtml.g.cs
 E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Razor\Areas\System\Views\Module\SelectIco.cshtml.g.cs
 E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\XamlC.stamp
+E:\Work\WeAppEip\Web\obj\Debug\netcoreapp2.2\Razor\Areas\System\Views\Customer\Index.cshtml.g.cs

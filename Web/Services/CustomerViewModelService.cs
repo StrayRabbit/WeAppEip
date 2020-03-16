@@ -1,9 +1,11 @@
 ﻿using ApplicationCore.Entities.CustomersAggregate;
 using ApplicationCore.Interfaces;
+using ApplicationCore.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WeAppEip.Web.ViewModels;
 using Web.Interfaces;
 using Web.ViewModels.Customer;
 
@@ -48,6 +50,29 @@ namespace Web.Services
 
                 await _customerRepository.UpdateAsync(entity);
             }
+        }
+
+        public async Task<PaginationViewModel<CustomerViewModel>> GetItemsAsync(string openId, string name, int skipCount = 0, int takeCount = 0)
+        {
+            var filterPaginatedSpecification = new CustomerFilterPaginatedSpecification(name, openId, skipCount, takeCount);
+
+            var result = new PaginationViewModel<CustomerViewModel>()
+            {
+                rows = (await _customerRepository.ListAsync(filterPaginatedSpecification)).Select(item => new CustomerViewModel()
+                {
+                    OpenId = item.OpenId,
+                    NickName = item.NickName,
+                    AvatarUrl = item.AvatarUrl,
+                    City = item.City,
+                    Country = item.Country,
+                    Gender = item.Gender,
+                    LastLoginTime = item.LastLoginTime,
+                    Province = item.Province,
+                }).OrderByDescending(item => item.LastLoginTime).ToList(),
+                total = await _customerRepository.CountAsync(filterPaginatedSpecification)
+            };
+
+            return result;
         }
     }
 }
