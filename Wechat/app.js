@@ -1,8 +1,8 @@
 //app.js
 App({
   globalData:{
-      appid:'wx9b0aa204055249be',//appid需自己提供，此处的appid我随机编写
-      secret:'28c2d4635a9435eae82ac772cb540782',//secret需自己提供，此处的secret我随机编写
+      appid:'wx9b0aa2040552419be',//appid需自己提供，此处的appid我随机编写
+      secret:'28c2d4635a9435eae82ac1772cb540782',//secret需自己提供，此处的secret我随机编写
 
   },
   onLaunch: function () {

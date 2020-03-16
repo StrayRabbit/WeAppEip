@@ -72,10 +72,7 @@ Page({
           'Accept': 'application/json'
         },
         success: function (res) {
-          console.log(res);
-        },
-        error:function(res){
-          console.log(res);
+          // console.log(res);
         }
       })
     }
